@@ -1,0 +1,20 @@
+.hidden {
+    display: none;
+}
+.container {
+    width: 700px;
+    /* Centering block */
+    margin: 0 auto;
+    display:block;
+    margin-top:50px;
+}
+.top-left {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}
+.top-right {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+}

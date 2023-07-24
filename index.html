@@ -3,12 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Coding Quiz</title>
     <link rel="stylesheet" href="assets\css\jass.css">
     <link rel="stylesheet" href="assets\css\style.css">
 </head>
 <body>
+
+    <div class="container">
+
+        <div class="top-left">View high scores</div>
+        <div class="top-right">Timer</div>
+
+        <div class="section" id="intro">
+            <h1>Javascript Coding Quiz</h1>
+            <p>Upon pressing start, you have 75 seconds to answer questions. Each incorrect answer will take off 10 seconds from the timer. The quiz ends when all questions are answered or the timer reaches 0. Your score is the amount of time left on the clock. So answer quickly and accurately. Good luck!</p>
+            <button id="start-button">Start</button>
+        </div>
     
+    
+        <div class="section hidden" id="questions">
+
+        </div>
+        <div class="section hidden" id="initials">
+            TODO Initials
+        </div>
+        <div class="section hidden" id="high-scores">
+            TODO High scores
+            FUTURE LocalStorage
+        </div>
+    </div>
 
     <script src="assets\js\script.js"></script>
 </body>
