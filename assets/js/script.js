@@ -7,6 +7,11 @@ var memTimer = null;
 
 var currentIndex = 0;
 
+var introDiv = document.querySelector("#intro");
+var questionsDiv = document.querySelector("#questions");
+var finalScore = document.querySelector("#final-score")
+var highScores = document.querySelector("#high-scores")
+
 var questions = [
     {
         text: "Best dog?",
@@ -16,12 +21,27 @@ var questions = [
     {
         text: "Q2",
         choices: ["Option 1", "Option 2", "Option 3", "Option 4"],
-        answer: "Option 1"
+        answer: "Option 3"
     },
     {
         text: "Q3",
         choices: ["Option 1", "Option 2", "Option 3", "Option 4"],
+        answer: "Option 4"
+    },
+    {
+        text: "Q4",
+        choices: ["Option 1", "Option 2", "Option 3", "Option 4"],
+        answer: "Option 2"
+    },
+    {
+        text: "Q5",
+        choices: ["Option 1", "Option 2", "Option 3", "Option 4"],
         answer: "Option 1"
+    },
+    {
+        text: "Q6",
+        choices: ["Option 1", "Option 2", "Option 3", "Option 4"],
+        answer: "Option 3"
     }
 ]
 
@@ -43,6 +63,15 @@ function renderQuestion () {
     choice4Btn.textContent = questions[currentIndex].choices[3];
 }
 
+highScores = [{}]
+function endGame() {
+    clearInterval(memTimer);
+    questionsDiv.classList.add("hidden");
+    let finalScore = prompt("Here is your score " + countdown);
+    finalScore = finalScore + " " + (countdown)
+    console.log(finalScore);
+}
+
 startBut.addEventListener("click", function(event){
     var startTimer = function(){
         memTimer = setInterval(function() {
@@ -54,18 +83,19 @@ startBut.addEventListener("click", function(event){
         },1000);
     }
 
-    var introDiv = document.querySelector("#intro");
-    var questionsDiv = document.querySelector("#questions");
-
     //$("#intro").addClass("hidden")
-    introDiv.classList.add("hidden")
+    introDiv.classList.add("hidden");
     
     //$("#questions").removeClass("hidden")
-    questionsDiv.classList.remove("hidden")
+    questionsDiv.classList.remove("hidden");
 
 
     startTimer();
-    renderQuestion()
+    renderQuestion();
+
+    if(countdown <= 0){
+        endGame();
+    }
 })
 // WHEN I answer a question
 var choice1Btn = document.querySelector("#choice1");
@@ -93,7 +123,7 @@ function nextQuestion(event) {
         currentIndex++;
         renderQuestion();
     } else {
-        console.log("Go to End")
+        endGame();
     }
 }
 
