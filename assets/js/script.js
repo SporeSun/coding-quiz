@@ -61,10 +61,6 @@ function renderQuestion () {
 
     var choice4Btn = document.querySelector("#choice4");
     choice4Btn.textContent = questions[currentIndex].choices[3];
-    
-    if(memTimer <= 0){
-        endGame();
-    }
 }
 var scoreArray = []
 function endGame() {
@@ -74,7 +70,7 @@ function endGame() {
     let finalScore = prompt("Here is your score " + countdown);
     finalScore = finalScore + " " + (countdown);
     scoreArray.unshift(finalScore + "\n");
-    localStorage.setItem("highscore", JSON.stringify(scoreArray));
+    localStorage.setItem("highscore", JSON.stringify(scoreArray.sort()));
     highScores.classList.remove("hidden");
     highScores.innerText = scoreArray;
 
@@ -87,12 +83,11 @@ startBut.addEventListener("click", function(event){
             countdown--;
             //countdown=countdown-1;
             console.log(countdown)
-            // TODO Affect the DOM innerText
+            if(countdown <= 0){
+                endGame();
+            }
             document.querySelector(".top-right").innerText = countdown + " seconds left";
         },1000);
-        if(memTimer <= 0){
-            endGame();
-        }
     }
 
     //$("#intro").addClass("hidden")
@@ -104,9 +99,6 @@ startBut.addEventListener("click", function(event){
 
     startTimer();
     renderQuestion();
-    if(memTimer <= 0){
-        endGame();
-    }
 })
 // WHEN I answer a question
 var choice1Btn = document.querySelector("#choice1");
@@ -134,10 +126,6 @@ function nextQuestion(event) {
         currentIndex++;
         renderQuestion();
     } else {
-        endGame();
-    }
-    
-    if(memTimer <= 0){
         endGame();
     }
 }
