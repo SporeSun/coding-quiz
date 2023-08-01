@@ -61,17 +61,22 @@ function renderQuestion () {
 
     var choice4Btn = document.querySelector("#choice4");
     choice4Btn.textContent = questions[currentIndex].choices[3];
+    
+    if(memTimer <= 0){
+        endGame();
+    }
 }
 var scoreArray = []
 function endGame() {
     clearInterval(memTimer);
+    scoreArray = JSON.parse(localStorage.getItem('highscore')) || [];
     questionsDiv.classList.add("hidden");
     let finalScore = prompt("Here is your score " + countdown);
     finalScore = finalScore + " " + (countdown);
     scoreArray.unshift(finalScore + "\n");
-    localStorage.setItem("highscore", scoreArray.toString());
+    localStorage.setItem("highscore", JSON.stringify(scoreArray));
     highScores.classList.remove("hidden");
-    highScores.innerText = localStorage.getItem("highscore")
+    highScores.innerText = scoreArray;
 
 
 }
@@ -85,6 +90,9 @@ startBut.addEventListener("click", function(event){
             // TODO Affect the DOM innerText
             document.querySelector(".top-right").innerText = countdown + " seconds left";
         },1000);
+        if(memTimer <= 0){
+            endGame();
+        }
     }
 
     //$("#intro").addClass("hidden")
@@ -96,8 +104,7 @@ startBut.addEventListener("click", function(event){
 
     startTimer();
     renderQuestion();
-
-    if(countdown <= 0){
+    if(memTimer <= 0){
         endGame();
     }
 })
@@ -127,6 +134,10 @@ function nextQuestion(event) {
         currentIndex++;
         renderQuestion();
     } else {
+        endGame();
+    }
+    
+    if(memTimer <= 0){
         endGame();
     }
 }
