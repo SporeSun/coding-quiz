@@ -62,14 +62,18 @@ function renderQuestion () {
     var choice4Btn = document.querySelector("#choice4");
     choice4Btn.textContent = questions[currentIndex].choices[3];
 }
-
-highScores = [{}]
+var scoreArray = []
 function endGame() {
     clearInterval(memTimer);
     questionsDiv.classList.add("hidden");
     let finalScore = prompt("Here is your score " + countdown);
-    finalScore = finalScore + " " + (countdown)
-    console.log(finalScore);
+    finalScore = finalScore + " " + (countdown);
+    scoreArray.unshift(finalScore + "\n");
+    localStorage.setItem("highscore", scoreArray.toString());
+    highScores.classList.remove("hidden");
+    highScores.innerText = localStorage.getItem("highscore")
+
+
 }
 
 startBut.addEventListener("click", function(event){
