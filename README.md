@@ -12,6 +12,8 @@ N/A. Runs in broswer
 
 Start the quiz. Finish before the timer runs out. Every wrong answer deducts 10 seconds off the timer. Final score is remaining time.
 
+https://sporesun.github.io/coding-quiz/
+
 ![Screenshot 1](assets/images/screenshot.png)
 ![Screenshot 2](assets/images/screenshot2.png)
 ![Screenshot 3](assets/images/screenshot3.png)
